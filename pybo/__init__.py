@@ -12,6 +12,7 @@ def create_app(): #애플리케이션 팩토리
     app = Flask(__name__)
     app.config.from_object(config)
 
+
     #ORM
     db.init_app(app)
     migrate.init_app(app, db)
@@ -22,5 +23,9 @@ def create_app(): #애플리케이션 팩토리
     app.register_blueprint(main_views.bp)
     app.register_blueprint(question_views.bp)
     app.register_blueprint(answer_views.bp)
+
+    # 필터 등록
+    from .filter import format_datetime
+    app.jinja_env.filters['datetime'] = format_datetime
 
     return app
