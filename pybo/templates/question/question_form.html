@@ -3,7 +3,7 @@
     <!--질문등록-->
     <div class="container">
         <h5 class="my-3 border-bottom pb-2">질문 등록</h5>
-        <form action="{{ url_for('question.create') }}" method="post" novalidate>
+        <form method="post" novalidate enctype="multipart/form-data">
             {{ form.csrf_token }}
             <!--오류표시 Start-->
             {% if form.errors %}
@@ -24,6 +24,9 @@
 
             {{ form.content.label }}
             {{ form.content(class="form-control") }}
+
+            {{ form.image.label }}
+            {{ form.image(class="form-control") }}
             <button type="submit" class="btn btn-primary my-3">등록하기</button>
         </form>
 
